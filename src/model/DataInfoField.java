@@ -13,9 +13,11 @@ import java.util.ArrayList;
  *
  */
 public class DataInfoField {
+	private String geneAssotiated;
 	private ArrayList <KeyValuePair<String, String>> lKeyValue; //Use arraylist, for watching step by step INFO field
 
 	public DataInfoField (){
+		geneAssotiated = new String();
 		lKeyValue = new ArrayList<KeyValuePair<String, String>>(); 
 	}
 	
@@ -37,6 +39,20 @@ public class DataInfoField {
 	 */
 	public void setlKeyValue(ArrayList <KeyValuePair<String, String>> lKeyValue) {
 		this.lKeyValue = lKeyValue;
+	}
+
+	/**
+	 * @return the geneAssotiated
+	 */
+	public String getGeneAssotiated() {
+		return geneAssotiated;
+	}
+
+	/**
+	 * @param geneAssotiated the geneAssotiated to set
+	 */
+	public void setGeneAssotiated(String geneAssotiated) {
+		this.geneAssotiated = geneAssotiated;
 	}
 
 	

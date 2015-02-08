@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class VCFDataLine {
 	private int iChrom;
-	private Long lPos;
+	private long lPos;
 	private List<String> sID; // Id could be more than one, they should be unique (check if necessary)
 	private String ref;
 	private String alt;
@@ -140,5 +140,6 @@ public class VCFDataLine {
 	public void setFilter(String filter) {
 		this.filter = filter;
 	}
+
 	
 }

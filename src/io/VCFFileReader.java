@@ -17,21 +17,19 @@ import parser.VCFParser;
  *
  */
 public class VCFFileReader {
-	private String sFileName;
-	private VCFParser parser; 
+	private String sFileName;	
 	public VCFFileReader(String sPath){
 		sFileName = sPath;
 	}
 	
 
-	public void getLineByLine(){
-		parser = new VCFParser();
+	public void getLineByLine(VCFParser parser){
 		try (BufferedReader br = Files.newBufferedReader(Paths.get(sFileName), StandardCharsets.UTF_8)) {
 		    for (String line = null; (line = br.readLine()) != null;) {
 		       parser.parseLine(line);
 		    }
 		} catch (IOException e) {
-			System.out.println("Error opening file:" + sFileName);
+			System.err.println("Error opening file:" + sFileName);
 			e.printStackTrace();
 		}
 	}

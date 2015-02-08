@@ -4,6 +4,7 @@
 package parser;
 
 
+import analyzer.AbstractAnalyzer;
 import model.KeyValuePair;
 import model.VCFDataLine;
 
@@ -15,8 +16,10 @@ public class VCFParser {
 	private VCFTokenizer tokenizer;
 	private static boolean bHeader = true; // Flag shows whether we parse header or not
 	private Long lLineNr; // Holds nr of lines in data lines
+	private AbstractAnalyzer analyzer;
 	
-	public VCFParser (){
+	public VCFParser (AbstractAnalyzer sAnalyzer){
+		analyzer = sAnalyzer;
 		tokenizer = new VCFTokenizer();
 		lLineNr = 0L;
 	}
@@ -29,13 +32,16 @@ public class VCFParser {
 				bHeader = false;
 		}
 		else{ 
+			lLineNr++;
 			keyValue = tokenizer.getVCFLineGenome(line, lLineNr);
 			VCFDataLine dInfo = tokenizer.getDataInfoField (keyValue);
-			lLineNr++;
+			analyzer.analyzeLine(dInfo);
+			}
 			
-			
-		}
-			
-		System.out.println(keyValue);
+		//System.out.println(keyValue);
+	}
+	
+	public AbstractAnalyzer getAnalyzer (){
+		return analyzer;
 	}
 }

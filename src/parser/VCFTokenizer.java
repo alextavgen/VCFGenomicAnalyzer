@@ -83,7 +83,7 @@ public class VCFTokenizer {
 	    		result.setValue(sLine);
 	    	}
 	    	else
-	    		System.out.println("Wrong format file, can't extract Key=Value from VCF - " + sLine );
+	    		System.err.println("Wrong format file, can't extract Key=Value from VCF - " + sLine );
 	      }
 	    
 		return result;
@@ -116,16 +116,13 @@ public class VCFTokenizer {
 	
  
 	private void parseMetaHeaderLine(KeyValuePair<String, String> keyValue) {
-		//System.out.println("Token: " + keyValue.getKey() + " Result: " + keyValue.getValue() );
+		//stub for parsing Headers
 
 	}
 
 	private boolean isCorrectFormat(String token) 
 	{ return fHEADER_TOKENS.contains(token);} 
 
-
-
-	
 	/*
 	 * Function for getting VCF lines after #CHROME header
 	 * 
@@ -147,7 +144,6 @@ public class VCFTokenizer {
 	    return result;
 	}
 
-
 	public VCFDataLine getDataInfoField(KeyValuePair<String, String> keyValue) {
 		VCFDataLine result = new VCFDataLine();
 		String token =keyValue.getValue();
@@ -162,8 +158,6 @@ public class VCFTokenizer {
 		result.setInfo(convertToInfoField(elements[7]));
 		result.setFormat(elements[8]);
 		result.setNA(elements[9]);
-	    //Matcher matcher =getMatcherWithRegexp(keyValue.getValue(), fREGEXPDATAFIELD);
-	      
 		return result;
 	}
 
@@ -174,7 +168,9 @@ public class VCFTokenizer {
 	    String token = null;
 	    while (parser.hasMoreTokens()) {
 	      token = parser.nextToken(fSEMICOLONSEPARATED);
-	      result.addKeyValue(extractKeyValuePair(token, fREGEXPKEYVALUE));
+	      KeyValuePair<String, String> kValue = extractKeyValuePair(token, fREGEXPKEYVALUE);
+	      result.addKeyValue(kValue);
+	      if (kValue.getKey().equals("Gene")) result.setGeneAssotiated(kValue.getValue());
 	    }
 		return result;
 	}

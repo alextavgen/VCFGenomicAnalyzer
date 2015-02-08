@@ -1,8 +1,18 @@
 import static org.junit.Assert.*;
+
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import io.VCFFileReader;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import analyzer.MutationAnalyzer;
+
+import parser.VCFParser;
 
 /**
  * 
@@ -34,8 +44,19 @@ public class VCFFileReaderTest {
 	 */
 	@Test
 	public void testGetLineByLine() {
+		/*try {
+			System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("c:\\outputShortUn.txt"))));
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		}*/
+
 		reader = new VCFFileReader("c:\\testData.vcf");
-		reader.getLineByLine();
+		MutationAnalyzer analyzer = new MutationAnalyzer();
+		VCFParser parser = new VCFParser(analyzer);
+		reader.getLineByLine(parser);
+		analyzer.printResults();
+		
 	}
 
 }
