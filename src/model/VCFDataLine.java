@@ -12,7 +12,7 @@ import java.util.List;
 public class VCFDataLine {
 	private int iChrom;
 	private long lPos;
-	private List<String> sID; // Id could be more than one, they should be unique (check if necessary)
+	private List<String> lID; // Id could be more than one, they should be unique (check if necessary)
 	private String ref;
 	private String alt;
 	private String qual;
@@ -48,13 +48,13 @@ public class VCFDataLine {
 	 * @return the sID
 	 */
 	public List<String> getsID() {
-		return sID;
+		return lID;
 	}
 	/**
 	 * @param sID the sID to set
 	 */
 	public void setsID(List<String> sID) {
-		this.sID = sID;
+		this.lID = sID;
 	}
 	/**
 	 * @return the ref

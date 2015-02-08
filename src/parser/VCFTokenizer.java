@@ -33,11 +33,8 @@ public class VCFTokenizer {
 	private static final String fCOMASEPARATED = ",";
 	// regular expression for fetching semicolon separated data from INFO field in data lines
 	private static final String fSEMICOLONSEPARATED = ";";
-	
-	
-	
-	
-	KeyValuePair<String, String> keyValueToken;
+		
+	private KeyValuePair<String, String> keyValueToken;
 
 	
 	  /**VCF File Meta DataHeader tokens, for checking correctness of the file format*/
